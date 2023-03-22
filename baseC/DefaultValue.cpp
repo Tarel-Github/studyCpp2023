@@ -2,7 +2,7 @@
 
 
 
-int Adder(int num1, str num2='aa')				// Adder 함수의 정의부, 함수에 기본값이 없다.
+int Adder()				// Adder 함수의 정의부, 함수에 기본값이 없다.
 {
 	return 0;
 }
