@@ -1,13 +1,14 @@
 ﻿#include<iostream>
 using namespace std;
 
-class FruitSeller {
+class FruitSeller
+{
 private:
 	int APPLE_PRICE;
 	int numOfApples;
 	int myMoney;
 public:
-	void InitMembers(int price, int num, int money)
+	FruitSeller(int price, int num, int money)		//생성자
 	{
 		APPLE_PRICE = price;
 		numOfApples = num;
@@ -20,7 +21,7 @@ public:
 		myMoney += money;
 		return num;
 	}
-	void ShowSalesResult()
+	void ShowSalesResult() const
 	{
 		cout << "남은 사과: " << numOfApples << endl;
 		cout << "판매 수익: " << myMoney << endl << endl;
@@ -29,45 +30,37 @@ public:
 
 class FruitBuyer
 {
+private:
 	int myMoney;
-	int numOfApples;			//이 두개는 private
-
+	int numOfApples;
 public:
-	void InitMembers(int money)
+	FruitBuyer(int money)		//생성자
 	{
 		myMoney = money;
 		numOfApples = 0;
 	}
-	void BuyApples(FruitSeller &seller, int money)
+	void BuyApples(FruitSeller& seller, int money)
 	{
 		numOfApples += seller.SaleApples(money);
 		myMoney -= money;
 	}
-	void ShowBuyResult()
+	void ShowBuyResult() const
 	{
 		cout << "현재 잔액: " << myMoney << endl;
-		cout << "사과 개수: " << numOfApples << endl << endl;
+		cout << "현재 잔액: " << myMoney << endl;
 	}
 };
 
-
 int main(void)
 {
-	FruitSeller seller;
-	seller.InitMembers(1000, 20, 0);
-	FruitBuyer buyer;
-	buyer.InitMembers(5000);
-	buyer.BuyApples(seller, 2000);	// 과일 구매!
+	FruitSeller seller(1000, 20, 0);
+	FruitBuyer buyer(5000);			//객체생성
+	buyer.BuyApples(seller, 2000);
 
 	cout << "과일 판매자의 현황" << endl;
 	seller.ShowSalesResult();
-	cout << "과일 구매자의 현황" << endl;
+	cout << "과일 판매자의 현황" << endl;
 	buyer.ShowBuyResult();
+
 	return 0;
 }
-
-
-
-
-
-
