@@ -3,26 +3,39 @@
 #include <cstring>
 using namespace std;
 
-// 동적 할당
+
 class Person {
 private:
-	char name[30];
-	int birthday;
+    char* name;
+    int* birthday;
 public:
-	Person(const char* a, int b = 0) { strcpy(name, a); }
-	void showPerson() { cout << name << birthday << endl; }
-	~Person() { cout << "메모리 해제" << endl; }
+    Person(const char* a, int b = 0) {
+        name = new char[strlen(a) + 1];
+        strcpy(name, a);
+        birthday = new int(b);
+    }
+
+    Person(const Person& other) {
+        name = new char[strlen(other.name) + 1];
+        strcpy(name, other.name);
+        birthday = new int(*other.birthday);
+    }
+
+    ~Person() {
+        delete[] name;
+        delete birthday;
+    }
+
+    void showPerson() {
+        cout << name << " " << *birthday << endl;
+    }
 };
 
 int main() {
-    Person * p = new Person ("홍길동", 1990);
-	p->showPerson();
+    Person p1("홍길동", 19990909);
+    p1.showPerson();
+    Person p2(p1);
+    p2.showPerson();
 
-
-	delete p;
-
-	return 0;
+    return 0;
 }
-
-
-
