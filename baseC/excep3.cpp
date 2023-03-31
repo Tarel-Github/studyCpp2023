@@ -19,12 +19,10 @@ void divide(int a, int b)
 
 int main()
 {
- 
 	divide(10, 3);
 	divide(100, 5);
 	divide(3, 0);
  
-
 	cout << "예외 발생 해도 정상 종료" << endl;
 
 	return 0;
